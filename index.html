@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+<div id="floating-panel">
+
+</div>
+    <div id="map"></div>
+    <script>
+var map;
+  
+function initMap() {
+var directionsService = new google.maps.DirectionsService;
+  var directionsDisplay = new google.maps.DirectionsRenderer;
+
+
+  var myLatLng = {lat: 37.5614564, lng: 126.9939035};
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    center: myLatLng
+  });
+directionsDisplay.setMap(map);
+}
+
+//테이블에서 한 행을 클릭했을때 위도 경도 전달받아서 거리표시
+function drawMap(startLat, startLng, endLat, endLng) {
+//var startLat = 37.5609677;
+//var startLng = 126.9981797;
+//var endLat = 37.5569384;
+//var endLng = 126.9995213;
+//var myLatLng2 = {lat: Lat, lng: Lng};
+
+var directionsService = new google.maps.DirectionsService;
+var directionsDisplay = new google.maps.DirectionsRenderer;
+  var myLatLng = {lat: 37.5614564, lng: 126.9939035};
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 17,
+    center: myLatLng
+  });
+directionsDisplay.setMap(map);
+calculateAndDisplayRoute(directionsService, directionsDisplay, startLat, startLng, endLat, endLng);
+}
+
+function initMap3(Lat, Lng) {
+var directionsService = new google.maps.DirectionsService;
+var directionsDisplay = new google.maps.DirectionsRenderer;
+
+var myLatLng = {lat: Lat, lng: Lng};
+
+map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    center: myLatLng
+  });
+directionsDisplay.setMap(map);
+}
+
+
+//함수에 좌표 전달받는 기능 추가 
+function drawMarker(Lat, Lng){
+  var myLatLng1 = {lat: Lat, lng: Lng};
+  var marker = new google.maps.Marker({
+    position: myLatLng1,
+    map: map,
+    title: 'asdf'
+  });
+}
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay, sLat, sLng, eLat, eLng) {
+
+var stLatLng = {lat: sLat, lng: sLng};
+var edLatLng = {lat: eLat, lng: eLng};
+  directionsService.route({
+    origin: stLatLng,
+    destination: edLatLng,
+    travelMode: google.maps.TravelMode.TRANSIT
+  }, function(response, status) {
+    if (status === google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
+}
+
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7J1zsErb9_7jxNu5KU5kIENFObAQEbl0
+&signed_in=false&callback=initMap"></script>
+
+  </body>
+</html>

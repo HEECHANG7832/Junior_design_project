@@ -1,4 +1,8 @@
-# Junior_design_project
-/*
-created by 8조 
-*/
+Jonior-design-project
+===================
+
+
+**빵집 찾아주는 어플리케이션**
+2016-10-16 
+
+----------
