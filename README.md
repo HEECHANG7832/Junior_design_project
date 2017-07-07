@@ -6,3 +6,4 @@ Jonior-design-project
 2016-10-16 
 
 ----------
+jxbrowser 관련 파일 제거
